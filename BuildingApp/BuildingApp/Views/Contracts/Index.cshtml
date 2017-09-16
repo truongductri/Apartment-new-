@@ -1,0 +1,66 @@
+@model IEnumerable<BuildingApp.Models.Contract>
+
+@{
+    ViewData["Title"] = "Contract";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Contract</h2>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.NumOfMonth)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.BeginDate)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.EndDate)
+                </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountOfMoney)
+            </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Status)
+                </th>
+           
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfMonth)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BeginDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EndDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Status)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ConstractID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ConstractID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ConstractID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

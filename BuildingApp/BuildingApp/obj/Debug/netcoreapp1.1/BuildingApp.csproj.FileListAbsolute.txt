@@ -1,0 +1,9 @@
+D:\DucTri\Work\mvc_core(demo)\BuildingApp\BuildingApp\bin\Debug\netcoreapp1.1\BuildingApp.deps.json
+D:\DucTri\Work\mvc_core(demo)\BuildingApp\BuildingApp\bin\Debug\netcoreapp1.1\BuildingApp.runtimeconfig.json
+D:\DucTri\Work\mvc_core(demo)\BuildingApp\BuildingApp\bin\Debug\netcoreapp1.1\BuildingApp.runtimeconfig.dev.json
+D:\DucTri\Work\mvc_core(demo)\BuildingApp\BuildingApp\bin\Debug\netcoreapp1.1\BuildingApp.dll
+D:\DucTri\Work\mvc_core(demo)\BuildingApp\BuildingApp\obj\Debug\netcoreapp1.1\BuildingApp.csprojResolveAssemblyReference.cache
+D:\DucTri\Work\mvc_core(demo)\BuildingApp\BuildingApp\obj\Debug\netcoreapp1.1\BuildingApp.AssemblyInfo.cs
+D:\DucTri\Work\mvc_core(demo)\BuildingApp\BuildingApp\bin\Debug\netcoreapp1.1\BuildingApp.pdb
+D:\DucTri\Work\mvc_core(demo)\BuildingApp\BuildingApp\obj\Debug\netcoreapp1.1\BuildingApp.dll
+D:\DucTri\Work\mvc_core(demo)\BuildingApp\BuildingApp\obj\Debug\netcoreapp1.1\BuildingApp.pdb

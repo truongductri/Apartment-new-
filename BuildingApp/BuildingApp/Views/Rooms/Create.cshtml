@@ -1,0 +1,99 @@
+@model BuildingApp.Models.Room
+
+@{
+    ViewData["Title"] = "Create";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Create</h2>
+
+<form asp-action="Create">
+    <div class="form-horizontal">
+        <h4>Room</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <div class="form-group">
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Image" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="TypeID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select id="ddlType" class="form-control" onchange="loadType()" asp-items="ViewBag.Types">
+                    <option value="0">--select type--</option>
+                </select>
+                
+                
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="PriceID" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select id="ddlPrice" class ="form-control" onchange="loadPrice()" asp-items="ViewBag.Prices">
+                    <option value="0">--select province--</option>
+                </select>
+                
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Capacity" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Capacity" class="form-control" />
+                <span asp-validation-for="Capacity" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Floor" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Floor" class="form-control" />
+                <span asp-validation-for="Floor" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="Status" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="Status" class="form-control" />
+                <span asp-validation-for="Status" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+<script type="text/javascript" src="~/Scripts/jquery-3.1.1.min.js"></script>
+@section Scripts{
+    <script type="text/javascript">
+        $("#ddlType").select2();
+        $("#ddlPrice").select2();
+        function ReloadType() {
+            var typeID = $('#ddlType').find('option:selected').attr('value');
+            ReloadPrice(typeID)
+            var link = "/Rooms?TypeID=" + typeID;
+            
+        };
+        function ReloadPrice() {
+             
+             type = $('#ddlPrice').find('option:selected').attr('value');
+            var link = "/Room?ProvinceID=" + typeID + "&PricetID=" + priceID;
+            window.location.href = link;
+        };
+    </script>
+}
