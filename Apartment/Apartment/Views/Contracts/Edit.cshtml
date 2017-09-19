@@ -1,0 +1,72 @@
+@model Apartment.Models.Contract
+
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit</h2>
+
+<form asp-action="Edit">
+    <div class="form-horizontal">
+        <h4>Contract</h4>
+        <hr />
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <input type="hidden" asp-for="ContractId" />
+        <div class="form-group">
+            <label asp-for="ContarctNo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ContarctNo" class="form-control" />
+                <span asp-validation-for="ContarctNo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="RoomId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="RoomId" class="form-control" asp-items="ViewBag.RoomId"></select>
+                <span asp-validation-for="RoomId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="CustomerId" class="control-label col-md-2"></label>
+            <div class="col-md-10">
+                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                <span asp-validation-for="CustomerId" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="EngageMonth" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="EngageMonth" class="form-control" />
+                <span asp-validation-for="EngageMonth" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="BeginDate" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="BeginDate" class="form-control" />
+                <span asp-validation-for="BeginDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="ContractValue" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="ContractValue" class="form-control" />
+                <span asp-validation-for="ContractValue" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+</form>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

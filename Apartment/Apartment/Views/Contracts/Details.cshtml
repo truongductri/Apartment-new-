@@ -1,0 +1,55 @@
+@model Apartment.Models.Contract
+
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Contract</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ContarctNo)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContarctNo)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.EngageMonth)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.EngageMonth)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.BeginDate)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.BeginDate)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractValue)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.ContractValue)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Customer)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Customer.CustomerId)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.Room)
+        </dt>
+        <dd>
+            @Html.DisplayFor(model => model.Room.RoomId)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ContractId">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,10 @@
+D:\DucTri\GitHub\Apartment(Data)\Apartment\Apartment\bin\Debug\netcoreapp1.1\Apartment.deps.json
+D:\DucTri\GitHub\Apartment(Data)\Apartment\Apartment\bin\Debug\netcoreapp1.1\Apartment.runtimeconfig.json
+D:\DucTri\GitHub\Apartment(Data)\Apartment\Apartment\bin\Debug\netcoreapp1.1\Apartment.runtimeconfig.dev.json
+D:\DucTri\GitHub\Apartment(Data)\Apartment\Apartment\bin\Debug\netcoreapp1.1\Apartment.dll
+D:\DucTri\GitHub\Apartment(Data)\Apartment\Apartment\bin\Debug\netcoreapp1.1\Apartment.pdb
+D:\DucTri\GitHub\Apartment(Data)\Apartment\Apartment\obj\Debug\netcoreapp1.1\Apartment.csprojResolveAssemblyReference.cache
+D:\DucTri\GitHub\Apartment(Data)\Apartment\Apartment\obj\Debug\netcoreapp1.1\Apartment.AssemblyInfo.cs
+D:\DucTri\GitHub\Apartment(Data)\Apartment\Apartment\obj\Debug\netcoreapp1.1\Apartment.dll
+D:\DucTri\GitHub\Apartment(Data)\Apartment\Apartment\obj\Debug\netcoreapp1.1\Apartment.pdb
+D:\DucTri\GitHub\Apartment(Data)\Apartment\Apartment\obj\Debug\netcoreapp1.1\UserSecretsAssemblyInfo.cs
