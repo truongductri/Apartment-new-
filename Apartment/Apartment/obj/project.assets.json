@@ -2003,6 +2003,21 @@
           "lib/netstandard1.3/NuGet.Frameworks.dll": {}
         }
       },
+      "OfficeOpenXml.Core.ExcelPackage/1.0.0": {
+        "type": "package",
+        "dependencies": {
+          "NETStandard.Library": "1.6.0",
+          "System.IO.Packaging": "4.0.0",
+          "System.Xml.XPath": "4.0.1",
+          "System.Xml.XPath.XDocument": "4.0.1"
+        },
+        "compile": {
+          "lib/netstandard1.6/OfficeOpenXml.Core.ExcelPackage.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.6/OfficeOpenXml.Core.ExcelPackage.dll": {}
+        }
+      },
       "Remotion.Linq/2.1.1": {
         "type": "package",
         "dependencies": {
@@ -2922,6 +2937,29 @@
             "assetType": "runtime",
             "rid": "win"
           }
+        }
+      },
+      "System.IO.Packaging/4.0.0": {
+        "type": "package",
+        "dependencies": {
+          "System.Collections": "4.0.11",
+          "System.Diagnostics.Debug": "4.0.11",
+          "System.Globalization": "4.0.11",
+          "System.IO": "4.1.0",
+          "System.IO.Compression": "4.1.0",
+          "System.IO.FileSystem": "4.0.1",
+          "System.IO.FileSystem.Primitives": "4.0.1",
+          "System.Resources.ResourceManager": "4.0.1",
+          "System.Runtime": "4.1.0",
+          "System.Runtime.Extensions": "4.1.0",
+          "System.Text.Encoding": "4.0.11",
+          "System.Xml.ReaderWriter": "4.0.11"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.IO.Packaging.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.IO.Packaging.dll": {}
         }
       },
       "System.IO.Pipes/4.3.0": {
@@ -4220,7 +4258,7 @@
           "System.Xml.ReaderWriter": "4.0.11"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Xml.XPath.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.dll": {}
@@ -4240,7 +4278,7 @@
           "System.Xml.XPath": "4.0.1"
         },
         "compile": {
-          "ref/netstandard1.3/_._": {}
+          "ref/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         },
         "runtime": {
           "lib/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
@@ -6001,6 +6039,35 @@
         "lib/netstandard1.3/NuGet.Frameworks.xml",
         "nuget.frameworks.3.5.0.nupkg.sha512",
         "nuget.frameworks.nuspec"
+      ]
+    },
+    "OfficeOpenXml.Core.ExcelPackage/1.0.0": {
+      "sha512": "LDhZ7K/zd7Zg3qndOacpdoYvyMbrnOm590g6fhS7NhR3zWkg90sz4NyOo1LGwq/9zianqjwV4gyJjtzLZ5JKww==",
+      "type": "package",
+      "path": "officeopenxml.core.excelpackage/1.0.0",
+      "files": [
+        "lib/net46/OfficeOpenXml.Core.ExcelPackage.dll",
+        "lib/net46/OfficeOpenXml.Core.ExcelPackage.pdb",
+        "lib/netstandard1.6/OfficeOpenXml.Core.ExcelPackage.dll",
+        "lib/netstandard1.6/OfficeOpenXml.Core.ExcelPackage.pdb",
+        "officeopenxml.core.excelpackage.1.0.0.nupkg.sha512",
+        "officeopenxml.core.excelpackage.nuspec",
+        "src/OfficeOpenXml.Core.ExcelPackage/ElementFactory.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelCell.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelColumn.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelDefinedNames.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelExtensions.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelHeaderFooter.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelPackage.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelRow.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelStyles.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelWorkbook.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelWorksheet.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelWorksheetView.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExcelWorksheets.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/ExtensonMethods.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/OfficeProperties.cs",
+        "src/OfficeOpenXml.Core.ExcelPackage/Properties/AssemblyInfo.cs"
       ]
     },
     "Remotion.Linq/2.1.1": {
@@ -7889,6 +7956,21 @@
         "runtimes/win/lib/netstandard1.3/System.IO.MemoryMappedFiles.dll",
         "system.io.memorymappedfiles.4.3.0.nupkg.sha512",
         "system.io.memorymappedfiles.nuspec"
+      ]
+    },
+    "System.IO.Packaging/4.0.0": {
+      "sha512": "taPqPWcAj/h6e/c+zIWIVe1ddJtpV6acC6g9GpolxUcIwUaH6zc0ZbFS8kkVzBkuWv76pMalKeTzfmHtfT1pXA==",
+      "type": "package",
+      "path": "system.io.packaging/4.0.0",
+      "files": [
+        "ThirdPartyNotices.txt",
+        "dotnet_library_license.txt",
+        "lib/net46/System.IO.Packaging.dll",
+        "lib/netstandard1.3/System.IO.Packaging.dll",
+        "ref/net46/System.IO.Packaging.dll",
+        "ref/netstandard1.3/System.IO.Packaging.dll",
+        "system.io.packaging.4.0.0.nupkg.sha512",
+        "system.io.packaging.nuspec"
       ]
     },
     "System.IO.Pipes/4.3.0": {
@@ -10946,7 +11028,8 @@
       "Microsoft.Extensions.Logging.Debug >= 1.1.2",
       "Microsoft.NETCore.App >= 1.1.2",
       "Microsoft.VisualStudio.Web.BrowserLink >= 1.1.2",
-      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 1.1.1"
+      "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 1.1.1",
+      "OfficeOpenXml.Core.ExcelPackage >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -10987,6 +11070,10 @@
           "Microsoft.Extensions.Logging.Debug": {
             "target": "Package",
             "version": "1.1.2"
+          },
+          "OfficeOpenXml.Core.ExcelPackage": {
+            "target": "Package",
+            "version": "1.0.0"
           },
           "Microsoft.EntityFrameworkCore.Tools": {
             "target": "Package",

@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Apartment.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Apartment.Controllers
 {
+
+    [Authorize]
     public class RoomsController : Controller
     {
         private readonly ApartmentContext _context;
@@ -25,24 +28,38 @@ namespace Apartment.Controllers
             return View(await apartmentContext.ToListAsync());
         }
 
-        public decimal GetPriceById(int? id)
+        //public decimal GetPriceById(int? id)
+        //{
+        //    if (id != null)
+        //    {
+        //        var price = _context.RoomType.Where(x => x.RoomTypeId == id).Select(x => x.PriceByType).FirstOrDefault();
+        //        return (price ?? 0);
+        //    }
+        //    return 0;
+        //}
+        //public string GetAreaById(int? id)
+        //{
+        //    if (id != null)
+        //    {
+        //        var area = _context.RoomType.Where(x => x.RoomTypeId == id).Select(x => x.AreaByType).FirstOrDefault();
+        //        return area;
+        //    }
+        //    return null;
+        //}
+
+            public IActionResult GetPriceAreaByRoomType(int? id)
         {
-            if (id != null)
+            var obj = _context.RoomType.Where(x => x.RoomTypeId == id).Select(x => new { price = x.PriceByType, area = x.AreaByType }).FirstOrDefault();
+
+            if (obj != null)
             {
-                var price = _context.RoomType.Where(x => x.RoomTypeId == id).Select(x => x.PriceByType).FirstOrDefault();
-                return (price ?? 0);
+                return Ok(obj);
+
             }
-            return 0;
+            return NotFound();
         }
-        public string GetAreaById(int? id)
-        {
-            if (id != null)
-            {
-                var area = _context.RoomType.Where(x => x.RoomTypeId == id).Select(x => x.AreaByType).FirstOrDefault();
-                return area;
-            }
-            return null;
-        }
+        
+
 
         // GET: Rooms/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -101,7 +118,7 @@ namespace Apartment.Controllers
             {
                 return NotFound();
             }
-            ViewData["RoomTypeId"] = new SelectList(_context.RoomType, "RoomTypeId", "RoomTypeId", room.RoomTypeId);
+            ViewData["RoomTypeId"] = new SelectList(_context.RoomType, "RoomTypeId", "RoomTypeName", room.RoomTypeId);
             return View(room);
         }
 
@@ -137,7 +154,7 @@ namespace Apartment.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["RoomTypeId"] = new SelectList(_context.RoomType, "RoomTypeId", "RoomTypeId", room.RoomTypeId);
+            ViewData["RoomTypeId"] = new SelectList(_context.RoomType, "RoomTypeId", "RoomTypeName", room.RoomTypeId);
             return View(room);
         }
 

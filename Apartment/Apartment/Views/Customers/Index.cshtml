@@ -1,4 +1,4 @@
-@model IEnumerable<Apartment.Models.Customer>
+﻿@model IEnumerable<Apartment.Models.Customer>
 
 @{
     ViewData["Title"] = "Index";
@@ -10,6 +10,18 @@
 <p>
     <a asp-action="Create">Create New</a>
 </p>
+<div class="col-sm-3">
+    <div class="row" style="margin-top:5px;">
+        <select id="ddlProvince" class="form-control" asp-items="ViewBag.Provinces" onchange="GetProvinceById()">
+            <option value="0">Tất cả</option>
+        </select>
+    </div>
+    <div class="row" style="margin-top:5px;">
+        <select id="ddlDistrict" class="form-control" asp-items="ViewBag.Districts" onchange="ReloadDistrictByProvinceId()">
+            <option value="0">Tất cả</option>
+        </select>
+    </div>
+</div>
 <table class="table">
     <thead>
         <tr>
@@ -31,20 +43,17 @@
                 <th>
                     @Html.DisplayNameFor(model => model.Gender)
                 </th>
-                <th>
-                    @Html.DisplayNameFor(model => model.Status)
-                </th>
             <th>
                 @Html.DisplayNameFor(model => model.District)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Province)
             </th>
-            <th></th>
+
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
+@foreach (Customer item in ViewBag.Customers) {
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.CustomerName)
@@ -56,6 +65,12 @@
                 @Html.DisplayFor(modelItem => item.IdentityCardNo)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Province.ProvinceName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.District.DistrictName)
+            </td>
+            <td>
                 @Html.DisplayFor(modelItem => item.PhoneNo)
             </td>
             <td>
@@ -64,15 +79,8 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Gender)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.District.DistrictId)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Province.ProvinceId)
-            </td>
+           
+            
             <td>
                 <a asp-action="Edit" asp-route-id="@item.CustomerId">Edit</a> |
                 <a asp-action="Details" asp-route-id="@item.CustomerId">Details</a> |
@@ -82,3 +90,21 @@
 }
     </tbody>
 </table>
+@section Scripts{
+<script type="text/javascript">
+    $("#ddlProvince").select2();
+    $("#ddlDistrict").select2();
+    function GetProvinceById() {
+        var provinceid = $('#ddlProvince').find('option:selected').attr('value');
+        var link = "/Customers?ProvinceID=" + provinceid;
+        window.location.href = link;
+    };
+    function ReloadDistrictByProvinceId() {
+        var provinceid = $('#ddlProvince').find('option:selected').attr('value');
+        var districtid = $('#ddlDistrict').find('option:selected').attr('value');
+        var link = "/Customers?ProvinceID=" + provinceid + "&DistrictID=" + districtid;
+        window.location.href = link;
+    };
+</script>
+
+}

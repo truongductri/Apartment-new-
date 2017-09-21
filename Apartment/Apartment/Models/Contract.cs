@@ -7,6 +7,7 @@ namespace Apartment.Models
     {
         public int ContractId { get; set; }
         public string ContarctNo { get; set; }
+        public string CustomerName { get; set; }
         public int? RoomId { get; set; }
         public int? CustomerId { get; set; }
         public int? EngageMonth { get; set; }

@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Apartment.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Apartment.Controllers
 {
+
+    [Authorize]
     public class ContractsController : Controller
     {
         private readonly ApartmentContext _context;
@@ -48,8 +51,8 @@ namespace Apartment.Controllers
         // GET: Contracts/Create
         public IActionResult Create()
         {
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "CustomerId");
-            ViewData["RoomId"] = new SelectList(_context.Room, "RoomId", "RoomId");
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "CustomerName");
+            ViewData["RoomId"] = new SelectList(_context.Room, "RoomId", "RoomNo");
             return View();
         }
 
@@ -66,8 +69,8 @@ namespace Apartment.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "CustomerId", contract.CustomerId);
-            ViewData["RoomId"] = new SelectList(_context.Room, "RoomId", "RoomId", contract.RoomId);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "CustomerName", contract.CustomerId);
+            ViewData["RoomId"] = new SelectList(_context.Room, "RoomId", "RoomNo", contract.RoomId);
             return View(contract);
         }
 
@@ -84,8 +87,12 @@ namespace Apartment.Controllers
             {
                 return NotFound();
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "CustomerId", contract.CustomerId);
-            ViewData["RoomId"] = new SelectList(_context.Room, "RoomId", "RoomId", contract.RoomId);
+            
+           
+                ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "CustomerName", contract.CustomerId);
+                ViewData["RoomId"] = new SelectList(_context.Room, "RoomId", "RoomNo", contract.RoomId);
+    
+            
             return View(contract);
         }
 
@@ -121,8 +128,8 @@ namespace Apartment.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "CustomerId", contract.CustomerId);
-            ViewData["RoomId"] = new SelectList(_context.Room, "RoomId", "RoomId", contract.RoomId);
+            ViewData["CustomerId"] = new SelectList(_context.Customer, "CustomerId", "CustomerName", contract.CustomerId);
+            ViewData["RoomId"] = new SelectList(_context.Room, "RoomId", "RoomNo", contract.RoomId);
             return View(contract);
         }
 
@@ -156,6 +163,8 @@ namespace Apartment.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
         }
+
+        
 
         private bool ContractExists(int id)
         {

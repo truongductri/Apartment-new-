@@ -1,7 +1,7 @@
 {
   "runtimeTarget": {
     "name": ".NETCoreApp,Version=v1.1",
-    "signature": "2a0b1a2c85e717fa4018c769792a678b9fa5b9c9"
+    "signature": "62eaa7ba7fa89e13ba1a3fddbb70de6ebea0bc03"
   },
   "compilationOptions": {
     "defines": [
@@ -38,7 +38,8 @@
           "Microsoft.Extensions.Logging.Debug": "1.1.2",
           "Microsoft.NETCore.App": "1.1.2",
           "Microsoft.VisualStudio.Web.BrowserLink": "1.1.2",
-          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "1.1.1"
+          "Microsoft.VisualStudio.Web.CodeGeneration.Design": "1.1.1",
+          "OfficeOpenXml.Core.ExcelPackage": "1.0.0"
         },
         "runtime": {
           "Apartment.dll": {}
@@ -1547,6 +1548,20 @@
           "lib/netstandard1.3/NuGet.Frameworks.dll": {}
         }
       },
+      "officeopenxml.core.excelpackage/1.0.0": {
+        "dependencies": {
+          "NETStandard.Library": "1.6.1",
+          "System.IO.Packaging": "4.0.0",
+          "System.Xml.XPath": "4.0.1",
+          "System.Xml.XPath.XDocument": "4.0.1"
+        },
+        "runtime": {
+          "lib/netstandard1.6/OfficeOpenXml.Core.ExcelPackage.dll": {}
+        },
+        "compile": {
+          "lib/netstandard1.6/OfficeOpenXml.Core.ExcelPackage.dll": {}
+        }
+      },
       "remotion.linq/2.1.1": {
         "dependencies": {
           "System.Collections": "4.3.0",
@@ -1771,6 +1786,28 @@
         },
         "compile": {
           "lib/netstandard1.0/System.Interactive.Async.dll": {}
+        }
+      },
+      "system.io.packaging/4.0.0": {
+        "dependencies": {
+          "System.Collections": "4.3.0",
+          "System.Diagnostics.Debug": "4.3.0",
+          "System.Globalization": "4.3.0",
+          "System.IO": "4.3.0",
+          "System.IO.Compression": "4.3.0",
+          "System.IO.FileSystem": "4.3.0",
+          "System.IO.FileSystem.Primitives": "4.3.0",
+          "System.Resources.ResourceManager": "4.3.0",
+          "System.Runtime": "4.3.0",
+          "System.Runtime.Extensions": "4.3.0",
+          "System.Text.Encoding": "4.3.0",
+          "System.Xml.ReaderWriter": "4.3.0"
+        },
+        "runtime": {
+          "lib/netstandard1.3/System.IO.Packaging.dll": {}
+        },
+        "compile": {
+          "ref/netstandard1.3/System.IO.Packaging.dll": {}
         }
       },
       "system.io.pipes/4.3.0": {
@@ -3523,6 +3560,9 @@
           "System.Threading": "4.3.0",
           "System.Xml.ReaderWriter": "4.3.0"
         },
+        "compile": {
+          "ref/netstandard1.3/System.Xml.XPath.dll": {}
+        },
         "compileOnly": true
       },
       "system.xml.xpath.xdocument/4.0.1": {
@@ -3536,6 +3576,9 @@
           "System.Xml.ReaderWriter": "4.3.0",
           "System.Xml.XDocument": "4.3.0",
           "System.Xml.XPath": "4.0.1"
+        },
+        "compile": {
+          "ref/netstandard1.3/System.Xml.XPath.XDocument.dll": {}
         },
         "compileOnly": true
       }
@@ -4261,6 +4304,13 @@
       "path": "nuget.frameworks/3.5.0",
       "hashPath": "nuget.frameworks.3.5.0.nupkg.sha512"
     },
+    "officeopenxml.core.excelpackage/1.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LDhZ7K/zd7Zg3qndOacpdoYvyMbrnOm590g6fhS7NhR3zWkg90sz4NyOo1LGwq/9zianqjwV4gyJjtzLZ5JKww==",
+      "path": "officeopenxml.core.excelpackage/1.0.0",
+      "hashPath": "officeopenxml.core.excelpackage.1.0.0.nupkg.sha512"
+    },
     "remotion.linq/2.1.1": {
       "type": "package",
       "serviceable": true,
@@ -4351,6 +4401,13 @@
       "sha512": "sha512-iyrgkZz9Dzm0fiPouQszFC3SO/46k6AYd/jG9bu+/o0AoDMaRXtlo3TIuWVNtOuJFd1noL963QouroJ0T3rImw==",
       "path": "system.interactive.async/3.0.0",
       "hashPath": "system.interactive.async.3.0.0.nupkg.sha512"
+    },
+    "system.io.packaging/4.0.0": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-taPqPWcAj/h6e/c+zIWIVe1ddJtpV6acC6g9GpolxUcIwUaH6zc0ZbFS8kkVzBkuWv76pMalKeTzfmHtfT1pXA==",
+      "path": "system.io.packaging/4.0.0",
+      "hashPath": "system.io.packaging.4.0.0.nupkg.sha512"
     },
     "system.io.pipes/4.3.0": {
       "type": "package",

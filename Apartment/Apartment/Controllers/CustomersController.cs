@@ -6,9 +6,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Apartment.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Apartment.Controllers
 {
+
+    [Authorize]
     public class CustomersController : Controller
     {
         private readonly ApartmentContext _context;
@@ -18,11 +21,71 @@ namespace Apartment.Controllers
             _context = context;    
         }
 
+
+
+
         // GET: Customers
-        public async Task<IActionResult> Index()
+        public IActionResult Index(int? ProvinceId, int? DistrictId)
         {
-            var apartmentContext = _context.Customer.Include(c => c.District).Include(c => c.Province);
-            return View(await apartmentContext.ToListAsync());
+            SelectList province;
+            SelectList district;
+            if (ProvinceId != null && ProvinceId != 0)
+            {
+                province = new SelectList(_context.Province.OrderBy(s => s.ProvinceName), "ProvinceId", "ProvinceName", ProvinceId);
+            }
+            else
+            {
+                province = new SelectList(_context.Province.OrderBy(s => s.ProvinceName), "ProvinceId", "ProvinceName");
+            }
+            if (DistrictId != null && DistrictId != 0)
+            {
+                if (ProvinceId != null && ProvinceId != 0)
+                {
+                    district = new SelectList(_context.District.Where(x => x.ProvinceId == ProvinceId).OrderBy(s => s.DistrictName), "DistrictId", "DistrictName", DistrictId);
+                }
+                else
+                {
+                    district = new SelectList(_context.District.OrderBy(s => s.DistrictName), "DistrictId", "DistrictName", DistrictId);
+                }
+            }
+            else
+            {
+                if (ProvinceId != null && ProvinceId != 0)
+                {
+                    district = new SelectList(_context.District.Where(x => x.ProvinceId == ProvinceId).OrderBy(s => s.DistrictName), "DistrictId", "DistrictName");
+                }
+                else
+                {
+                    district = new SelectList(_context.District.OrderBy(s => s.DistrictName), "DistrictId", "DistrictName");
+                }
+            }
+            var CustomerContext = _context.Customer.ToAsyncEnumerable();
+            if (ProvinceId != null && ProvinceId != 0)
+            {
+                CustomerContext = CustomerContext.Where(x => x.ProvinceId == ProvinceId);
+            }
+            if (DistrictId != null && DistrictId != 0)
+            {
+                CustomerContext = CustomerContext.Where(x => x.DistrictId == DistrictId);
+            }
+            var customer = CustomerContext.Select(j => new Customer()
+            {
+                CustomerId = j.CustomerId,
+                CustomerName = j.CustomerName,
+                BirthDay = j.BirthDay,
+                IdentityCardNo = j.IdentityCardNo,
+                PhoneNo = j.PhoneNo,
+                Email = j.Email,
+                Gender = j.Gender,
+                Province = j.Province,
+                District = j.District,
+                Status = j.Status
+            }).ToEnumerable();
+
+            ViewBag.Provinces = province;
+            ViewBag.Districts = district;
+            ViewBag.Customers = customer;
+            return View();
         }
 
         // GET: Customers/Details/5
@@ -46,11 +109,35 @@ namespace Apartment.Controllers
         }
 
         // GET: Customers/Create
-        public IActionResult Create()
+        public IActionResult Create(int? ProvinceId)
         {
-            ViewData["DistrictId"] = new SelectList(_context.District, "DistrictId", "DistrictId");
-            ViewData["ProvinceId"] = new SelectList(_context.Province, "ProvinceId", "ProvinceId");
+
+            //SelectList province = new SelectList(_context.Province, "ProvinceId", "ProvinceName");
+            //if (id != null)
+            //{
+            //    ViewBag.Districts = new SelectList(_context.District.Where(x => x.ProvinceId == id), "DistrictId", "DistrictName");
+            //}
+            //else
+            //{
+            //    if (province.FirstOrDefault() != null)
+            //    {
+            //        ViewBag.Districts = new SelectList(_context.District.Where(x => x.ProvinceId == Convert.ToInt32(province.FirstOrDefault().Value)), "DistrictId", "DistrictName");
+            //    }
+            //}
+
+            //ViewBag.Provinces = province;
+            //return View();
+            
+            
+            ViewData["ProvinceId"] = new SelectList(_context.Province, "ProvinceId", "ProvinceName");
+            if (ProvinceId != null)
+            {
+                ViewBag.Districts = new SelectList(_context.District.Where(x => x.ProvinceId == ProvinceId),"DistrictId","DistrictName");
+            }
             return View();
+
+
+
         }
 
         // POST: Customers/Create
@@ -66,8 +153,11 @@ namespace Apartment.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewData["DistrictId"] = new SelectList(_context.District, "DistrictId", "DistrictId", customer.DistrictId);
-            ViewData["ProvinceId"] = new SelectList(_context.Province, "ProvinceId", "ProvinceId", customer.ProvinceId);
+            if (customer.ProvinceId != null)
+            {
+                ViewBag.Districts = new SelectList(_context.District.Where(x => x.ProvinceId == customer.ProvinceId), "DistrictId", "DistrictName");
+            }
+            ViewData["ProvinceId"] = new SelectList(_context.Province, "ProvinceId", "ProvinceName", customer.ProvinceId);
             return View(customer);
         }
 
@@ -84,8 +174,11 @@ namespace Apartment.Controllers
             {
                 return NotFound();
             }
-            ViewData["DistrictId"] = new SelectList(_context.District, "DistrictId", "DistrictId", customer.DistrictId);
-            ViewData["ProvinceId"] = new SelectList(_context.Province, "ProvinceId", "ProvinceId", customer.ProvinceId);
+            if (id != null)
+            {
+                ViewBag.Districts = new SelectList(_context.District.Where(x => x.ProvinceId == id), "DistrictId", "DistrictName");
+            }
+            ViewData["ProvinceId"] = new SelectList(_context.Province, "ProvinceId", "ProvinceName", customer.ProvinceId);
             return View(customer);
         }
 
@@ -121,8 +214,10 @@ namespace Apartment.Controllers
                 }
                 return RedirectToAction("Index");
             }
-            ViewData["DistrictId"] = new SelectList(_context.District, "DistrictId", "DistrictId", customer.DistrictId);
-            ViewData["ProvinceId"] = new SelectList(_context.Province, "ProvinceId", "ProvinceId", customer.ProvinceId);
+            
+                ViewBag.Districts = new SelectList(_context.District.Where(x => x.ProvinceId == customer.ProvinceId), "DistrictName", "DistrictName",customer.DistrictId);
+           
+            ViewData["ProvinceId"] = new SelectList(_context.Province, "DistrictId", "DistrictName", customer.ProvinceId);
             return View(customer);
         }
 
@@ -155,6 +250,14 @@ namespace Apartment.Controllers
             _context.Customer.Remove(customer);
             await _context.SaveChangesAsync();
             return RedirectToAction("Index");
+        }
+
+        public IActionResult GetAllDistrictByProvinceId(int id)
+        {
+            
+                var data = _context.District.Where(x => x.ProvinceId == id).OrderBy(x => x.DistrictName).Select(x=> new {Name= x.DistrictName, Id=x.DistrictId }).ToList();
+                return Ok(new SelectList(data,"Id","Name"));
+            
         }
 
         private bool CustomerExists(int id)

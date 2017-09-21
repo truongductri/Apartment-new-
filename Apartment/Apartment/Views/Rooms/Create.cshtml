@@ -60,34 +60,46 @@
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
     <script>
-        function GetPrice() {
-            var roomTypeID = $('#ddlRoomTypes').find('option:selected').attr('value');
+        //function GetPrice() {
+        //    var roomTypeID = $('#ddlRoomTypes').find('option:selected').attr('value');
 
-            if (roomTypeID) {
-                $.ajax({
-                    type: "GET",
-                    url: "/Rooms/GetPriceById/" + roomTypeID,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (data) {
-                        if (data) {
-                            document.getElementById("txtPrices").value = data;
-                        }
+            //if (roomTypeID) {
+            //    $.ajax({
+            //        type: "GET",
+            //        url: "/Rooms/GetPriceAreaByRoomType/" + roomTypeID,
+            //        contentType: "application/json; charset=utf-8",
+            //        dataType: "json",
+            //        success: function (data) {
+            //            if (data) {
+            //                document.getElementById("txtPrices").value = data.price;
+            //                document.getElementById("txtAreas").value = data.area;
+            //            }
+            //        }
+            //    });
+
+               
+                function GetPrice() {
+                    var roomTypeID = $('#ddlRoomTypes').find('option:selected').attr('value');
+
+                    if (roomTypeID) {
+                        $.ajax({
+                            type: "GET",
+                            url: "/Rooms/GetPriceAreaByRoomType/" + roomTypeID,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data) {
+                                if (data) {
+                                    console.log(data);
+                                    document.getElementById("txtPrices").value = data.price;
+                                    document.getElementById("txtAreas").value = data.area;
+                                }
+                            }
+                        });
+
                     }
-                });
-                $.ajax({
-                    type: "GET",
-                    url: "/Rooms/GetAreaById/" + roomTypeID,
-                    contentType: "application/json; charset=utf-8",
-                    dataType: "json",
-                    success: function (e) {
-                        if (e) {
-                            document.getElementById("txtAreas").value = e;
-                        }
-                    }
-                });
-            }
         }
+        
+        
     </script>
 }
 

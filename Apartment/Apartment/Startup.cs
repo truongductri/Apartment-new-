@@ -12,14 +12,16 @@ using Microsoft.Extensions.Logging;
 using Apartment.Data;
 using Apartment.Models;
 using Apartment.Services;
-using Microsoft.EntityFrameworkCore;
+
 
 namespace Apartment
 {
     public class Startup
     {
+
         public Startup(IHostingEnvironment env)
         {
+
             var builder = new ConfigurationBuilder()
                 .SetBasePath(env.ContentRootPath)
                 .AddJsonFile("appsettings.json", optional: false, reloadOnChange: true)
@@ -32,6 +34,8 @@ namespace Apartment
             }
 
             builder.AddEnvironmentVariables();
+            string sAppPath = env.ContentRootPath; //Application Base Path
+            string swwwRootPath = env.WebRootPath;  //wwwroot folder path
             Configuration = builder.Build();
         }
 

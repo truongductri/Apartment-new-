@@ -1,3 +1,6 @@
+
+
+
 @model Apartment.Models.Contract
 
 @{
@@ -13,28 +16,23 @@
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
         <div class="form-group">
-            <label asp-for="ContarctNo" class="col-md-2 control-label"></label>
+            <label asp-for="CustomerId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="ContarctNo" class="form-control" />
-                <span asp-validation-for="ContarctNo" class="text-danger"></span>
+                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
             </div>
         </div>
         <div class="form-group">
             <label asp-for="RoomId" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="RoomId" class ="form-control" asp-items="ViewBag.RoomId"></select>
+                <select id="ddlRooms" asp-for="RoomId" class ="form-control" asp-items="ViewBag.RoomId" onchange="GetPriceByMonth()"></select>
             </div>
         </div>
-        <div class="form-group">
-            <label asp-for="CustomerId" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <select asp-for="CustomerId" class ="form-control" asp-items="ViewBag.CustomerId"></select>
-            </div>
-        </div>
+        
+       
         <div class="form-group">
             <label asp-for="EngageMonth" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="EngageMonth" class="form-control" />
+                <input id="txtMonth" asp-for="EngageMonth" class="form-control" onchange="GetPriceByMonth()"/>
                 <span asp-validation-for="EngageMonth" class="text-danger"></span>
             </div>
         </div>
@@ -48,7 +46,7 @@
         <div class="form-group">
             <label asp-for="ContractValue" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <input asp-for="ContractValue" class="form-control" />
+                <input id="txtValue" asp-for="ContractValue" class="form-control" />
                 <span asp-validation-for="ContractValue" class="text-danger"></span>
             </div>
         </div>
@@ -66,4 +64,46 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+
+   
+    <script>
+        function GetPriceByMonth() {
+            var roomid = $('#ddlRooms').find('option:selected').attr('value');
+            var month = document.getElementById('txtMonth').value;
+            if (month) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Rooms/GetPriceAreaByRoomType/" + roomid,//lay ve gia theo id=>obj.
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (obj) {
+                        if (obj) {
+                            document.getElementById("txtValue").value = month * (obj.price);
+                        }
+                    }
+                });
+            }
+        }
+    </script>
+
+     @*function GetPrice() {
+                    var Price = $('#ddlRoomTypes').find('option:selected').attr('value');
+
+                    if (roomTypeID) {
+                        $.ajax({
+                            type: "GET",
+                            url: "/Rooms/GetPriceAreaByRoomType/" + roomTypeID,
+                            contentType: "application/json; charset=utf-8",
+                            dataType: "json",
+                            success: function (data) {
+                                if (data) {
+                                    console.log(data);
+                                    document.getElementById("txtPrices").value = data.price;
+                                    document.getElementById("txtAreas").value = data.area;
+                                }
+                            }
+                        });
+
+                    }*@
 }
