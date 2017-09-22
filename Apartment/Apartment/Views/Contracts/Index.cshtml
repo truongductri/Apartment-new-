@@ -1,4 +1,4 @@
-@model IEnumerable<Apartment.Models.Contract>
+@model IEnumerable<Apartment.Models.ContractViewModels.ContractViewModel>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,23 +16,24 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.ContarctNo)
+                @Html.DisplayNameFor(model => model.ContractNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CustomerName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoomTypeId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.EngageMonth)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.BeginDate)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.ContractValue)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Customer)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Room)
-            </th>
+            
             <th></th>
         </tr>
     </thead>
@@ -41,22 +42,22 @@
             {
             <tr>
                 <td>
-                    @Html.DisplayFor(modelItem => item.ContarctNo)
+                    @Html.DisplayFor(modelItem => item.ContractNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.CustomerName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomNo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoomTypeId)
                 </td>
                 <td>
                     @Html.DisplayFor(modelItem => item.EngageMonth)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.BeginDate)
-                </td>
-                <td>
                     @Html.DisplayFor(modelItem => item.ContractValue)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Customer.CustomerId)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.Room.RoomId)
                 </td>
                 <td>
                     <a asp-action="Edit" asp-route-id="@item.ContractId">Edit</a> |

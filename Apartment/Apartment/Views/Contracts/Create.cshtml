@@ -1,7 +1,7 @@
 
 
 
-@model Apartment.Models.Contract
+@model Apartment.Models.ContractViewModels.ContractViewModel
 
 @{
     ViewData["Title"] = "Create";
@@ -15,46 +15,101 @@
         <h4>Contract</h4>
         <hr />
         <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <h3>Information Contract</h3>
         <div class="form-group">
-            <label asp-for="CustomerId" class="col-md-2 control-label"></label>
+            <label asp-for="@Model.ContractNo" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select asp-for="CustomerId" class="form-control" asp-items="ViewBag.CustomerId"></select>
+                <input asp-for="@Model.ContractNo" class="form-control" />
+                <span asp-validation-for="@Model.ContractNo" class="text-danger"></span>
             </div>
         </div>
         <div class="form-group">
-            <label asp-for="RoomId" class="col-md-2 control-label"></label>
+            <label asp-for="@Model.CustomerName" class="col-md-2 control-label"></label>
             <div class="col-md-10">
-                <select id="ddlRooms" asp-for="RoomId" class ="form-control" asp-items="ViewBag.RoomId" onchange="GetPriceByMonth()"></select>
+                <input asp-for="@Model.CustomerName" class="form-control" />
+                <span asp-validation-for="@Model.CustomerName" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.BirthDay" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.BirthDay" class="form-control" />
+                <span asp-validation-for="@Model.BirthDay" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Gender" class="col-md-2 control-label"></label>
+                <div class="col-md-10">
+                    <select>
+                        <option value="Male">Male</option>
+                        <option value="Female">Female</option>
+                        <option value="Unknown">Unknown</option>
+                    </select>
+                </div>
+            </div>
+        <div class="form-group">
+            <label asp-for="@Model.IdentityCardNo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.IdentityCardNo" class="form-control" />
+                <span asp-validation-for="@Model.IdentityCardNo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.ProvinceId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select id="ddlProvince" asp-for="@Model.ProvinceId" class="form-control" asp-items="ViewBag.Provinces" onchange="GetLoadDistrict()"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.DistrictId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select id="ddlDistrict" asp-for="@Model.DistrictId" class="form-control" asp-items="ViewBag.Districts" onchange="LoadDistrict()"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.PhoneNo" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.PhoneNo" class="form-control" />
+                <span asp-validation-for="@Model.PhoneNo" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.RoomTypeId" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <select id="ddlRoomTypes" asp-for="@Model.RoomTypeId" class="form-control" asp-items="ViewBag.RoomTypes" onchange="GetPrice()"></select>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Price" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input id="txtPrices" asp-for="@Model.Price" class="form-control" />
+                <span asp-validation-for="@Model.Price" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.Area" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input id="txtAreas" asp-for="@Model.Area" class="form-control" />
+                <span asp-validation-for="@Model.Area" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.EngageMonth" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input id="txtMonth" asp-for="@Model.EngageMonth" class="form-control" />
+                <span asp-validation-for="@Model.EngageMonth" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="form-group">
+            <label asp-for="@Model.ContractValue" class="col-md-2 control-label"></label>
+            <div class="col-md-10">
+                <input asp-for="@Model.ContractValue" class="form-control" />
+                <span asp-validation-for="@Model.ContractValue" class="text-danger"></span>
             </div>
         </div>
         
        
-        <div class="form-group">
-            <label asp-for="EngageMonth" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input id="txtMonth" asp-for="EngageMonth" class="form-control" onchange="GetPriceByMonth()"/>
-                <span asp-validation-for="EngageMonth" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="BeginDate" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input asp-for="BeginDate" class="form-control" />
-                <span asp-validation-for="BeginDate" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <label asp-for="ContractValue" class="col-md-2 control-label"></label>
-            <div class="col-md-10">
-                <input id="txtValue" asp-for="ContractValue" class="form-control" />
-                <span asp-validation-for="ContractValue" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
-            </div>
-        </div>
+       
     </div>
 </form>
 
@@ -85,25 +140,58 @@
                 });
             }
         }
+
+        function GetPrice() {
+            var roomTypeID = $('#ddlRoomTypes').find('option:selected').attr('value');
+
+            if (roomTypeID) {
+                $.ajax({
+                    type: "GET",
+                    url: "/Rooms/GetPriceAreaByRoomType/" + roomTypeID,
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (data) {
+                        if (data) {
+                            console.log(data);
+                            document.getElementById("txtPrices").value = data.price;
+                            document.getElementById("txtAreas").value = data.area;
+                        }
+                    }
+                });
+
+            }
+        }
+
+        function GetLoadDistrict() {
+            // get down a value="id" of province in 'option:selected' when click button Province
+            var provinceId = $('#ddlProvince').find('option:selected').attr('value');
+            //if exits then call up server by ajax command to get down values of district => return price and are
+                if (provinceId) {
+                    $.ajax({
+                        type: "GET",
+                        url: "/Customers/GetDistrictByProId/" + provinceId,
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (data) {
+
+                            console.log(data);
+                            if (data != null && data != undefined && data.length) {
+                                var html = '';
+                                html += '<option value="">--select district--</option>';
+                                $.each(data, function (key, item) {
+                                    html += '<option value=' + item.id + '>' + item.name + '</option>';
+                                });
+                                $("#ddlDistrict").html(html).find('option:selected').attr('value');
+                            }
+                        }
+                    });
+                }
+        }
+        
+        function LoadDistrict() {
+            $('#ddlDistrict').find('option:selected').attr('value');
+        }
     </script>
 
-     @*function GetPrice() {
-                    var Price = $('#ddlRoomTypes').find('option:selected').attr('value');
-
-                    if (roomTypeID) {
-                        $.ajax({
-                            type: "GET",
-                            url: "/Rooms/GetPriceAreaByRoomType/" + roomTypeID,
-                            contentType: "application/json; charset=utf-8",
-                            dataType: "json",
-                            success: function (data) {
-                                if (data) {
-                                    console.log(data);
-                                    document.getElementById("txtPrices").value = data.price;
-                                    document.getElementById("txtAreas").value = data.area;
-                                }
-                            }
-                        });
-
-                    }*@
+    
 }

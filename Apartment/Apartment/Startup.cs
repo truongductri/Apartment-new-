@@ -34,8 +34,6 @@ namespace Apartment
             }
 
             builder.AddEnvironmentVariables();
-            string sAppPath = env.ContentRootPath; //Application Base Path
-            string swwwRootPath = env.WebRootPath;  //wwwroot folder path
             Configuration = builder.Build();
         }
 

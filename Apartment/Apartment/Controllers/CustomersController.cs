@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -7,6 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Apartment.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using OfficeOpenXml;
+using System.Text;
+using Microsoft.AspNetCore.Hosting;
+
 
 namespace Apartment.Controllers
 {
@@ -20,9 +25,6 @@ namespace Apartment.Controllers
         {
             _context = context;    
         }
-
-
-
 
         // GET: Customers
         public IActionResult Index(int? ProvinceId, int? DistrictId)
@@ -111,33 +113,12 @@ namespace Apartment.Controllers
         // GET: Customers/Create
         public IActionResult Create(int? ProvinceId)
         {
-
-            //SelectList province = new SelectList(_context.Province, "ProvinceId", "ProvinceName");
-            //if (id != null)
-            //{
-            //    ViewBag.Districts = new SelectList(_context.District.Where(x => x.ProvinceId == id), "DistrictId", "DistrictName");
-            //}
-            //else
-            //{
-            //    if (province.FirstOrDefault() != null)
-            //    {
-            //        ViewBag.Districts = new SelectList(_context.District.Where(x => x.ProvinceId == Convert.ToInt32(province.FirstOrDefault().Value)), "DistrictId", "DistrictName");
-            //    }
-            //}
-
-            //ViewBag.Provinces = province;
-            //return View();
-            
-            
             ViewData["ProvinceId"] = new SelectList(_context.Province, "ProvinceId", "ProvinceName");
             if (ProvinceId != null)
             {
                 ViewBag.Districts = new SelectList(_context.District.Where(x => x.ProvinceId == ProvinceId),"DistrictId","DistrictName");
             }
             return View();
-
-
-
         }
 
         // POST: Customers/Create
@@ -252,11 +233,11 @@ namespace Apartment.Controllers
             return RedirectToAction("Index");
         }
 
-        public IActionResult GetAllDistrictByProvinceId(int id)
+        public IActionResult GetDistrictByProId(int id)
         {
             
                 var data = _context.District.Where(x => x.ProvinceId == id).OrderBy(x => x.DistrictName).Select(x=> new {Name= x.DistrictName, Id=x.DistrictId }).ToList();
-                return Ok(new SelectList(data,"Id","Name"));
+                return Ok(data);
             
         }
 

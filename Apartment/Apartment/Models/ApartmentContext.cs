@@ -29,7 +29,7 @@ namespace Apartment.Models
 
                 entity.Property(e => e.BeginDate).HasColumnType("date");
 
-                entity.Property(e => e.ContarctNo).HasColumnType("nchar(10)");
+                entity.Property(e => e.ContractNo).HasColumnType("nchar(10)");
 
                 entity.Property(e => e.CustomerId).HasColumnName("CustomerID");
 
